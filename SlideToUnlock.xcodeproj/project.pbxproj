@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		438A73811E90DB03000905AE /* unlock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 438A73801E90DB03000905AE /* unlock.mp3 */; };
 		669062161E6FF68A00DCCA9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669062151E6FF68A00DCCA9D /* AppDelegate.swift */; };
 		669062181E6FF68A00DCCA9D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669062171E6FF68A00DCCA9D /* ViewController.swift */; };
 		6690621B1E6FF68A00DCCA9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 669062191E6FF68A00DCCA9D /* Main.storyboard */; };
 		6690621D1E6FF68A00DCCA9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6690621C1E6FF68A00DCCA9D /* Assets.xcassets */; };
 		669062201E6FF68A00DCCA9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6690621E1E6FF68A00DCCA9D /* LaunchScreen.storyboard */; };
+		669062291E6FF6E400DCCA9D /* C2ASlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669062281E6FF6E400DCCA9D /* C2ASlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		438A73801E90DB03000905AE /* unlock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = unlock.mp3; path = SlideToUnlock/unlock.mp3; sourceTree = "<group>"; };
+		438A73831E912FCC000905AE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		669062121E6FF68A00DCCA9D /* SlideToUnlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideToUnlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		669062151E6FF68A00DCCA9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		669062171E6FF68A00DCCA9D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,7 @@
 		6690621C1E6FF68A00DCCA9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6690621F1E6FF68A00DCCA9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		669062211E6FF68A00DCCA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		669062281E6FF6E400DCCA9D /* C2ASlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C2ASlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,11 +40,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		438A737B1E90D925000905AE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				438A73801E90DB03000905AE /* unlock.mp3 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		438A73821E912FCC000905AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				438A73831E912FCC000905AE /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		669062091E6FF68A00DCCA9D = {
 			isa = PBXGroup;
 			children = (
-				669062141E6FF68A00DCCA9D /* SlideToUnlock */,
 				669062131E6FF68A00DCCA9D /* Products */,
+				438A737B1E90D925000905AE /* Resources */,
+				669062271E6FF6C000DCCA9D /* Slider */,
+				669062141E6FF68A00DCCA9D /* SlideToUnlock */,
+				438A73821E912FCC000905AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +86,14 @@
 				669062211E6FF68A00DCCA9D /* Info.plist */,
 			);
 			path = SlideToUnlock;
+			sourceTree = "<group>";
+		};
+		669062271E6FF6C000DCCA9D /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				669062281E6FF6E400DCCA9D /* C2ASlider.swift */,
+			);
+			name = Slider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,7 +128,7 @@
 				TargetAttributes = {
 					669062111E6FF68A00DCCA9D = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 73QD2M7882;
+						DevelopmentTeam = TWL9GTP42W;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -124,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				438A73811E90DB03000905AE /* unlock.mp3 in Resources */,
 				669062201E6FF68A00DCCA9D /* LaunchScreen.storyboard in Resources */,
 				6690621D1E6FF68A00DCCA9D /* Assets.xcassets in Resources */,
 				6690621B1E6FF68A00DCCA9D /* Main.storyboard in Resources */,
@@ -137,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				669062291E6FF6E400DCCA9D /* C2ASlider.swift in Sources */,
 				669062181E6FF68A00DCCA9D /* ViewController.swift in Sources */,
 				669062161E6FF68A00DCCA9D /* AppDelegate.swift in Sources */,
 			);
@@ -259,7 +293,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 73QD2M7882;
+				DEVELOPMENT_TEAM = TWL9GTP42W;
 				INFOPLIST_FILE = SlideToUnlock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.code2app.SlideToUnlock;
@@ -272,7 +306,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 73QD2M7882;
+				DEVELOPMENT_TEAM = TWL9GTP42W;
 				INFOPLIST_FILE = SlideToUnlock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.code2app.SlideToUnlock;
@@ -300,6 +334,7 @@
 				669062261E6FF68A00DCCA9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
