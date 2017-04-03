@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		438A73811E90DB03000905AE /* unlock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 438A73801E90DB03000905AE /* unlock.mp3 */; };
+		43DF19A71E92F4F6008E9836 /* Backlog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 43DF19A61E92F4F6008E9836 /* Backlog.rtf */; };
+		43DF19AF1E92F693008E9836 /* SlideToUnlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF19AE1E92F693008E9836 /* SlideToUnlockTests.swift */; };
 		669062161E6FF68A00DCCA9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669062151E6FF68A00DCCA9D /* AppDelegate.swift */; };
 		669062181E6FF68A00DCCA9D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669062171E6FF68A00DCCA9D /* ViewController.swift */; };
 		6690621B1E6FF68A00DCCA9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 669062191E6FF68A00DCCA9D /* Main.storyboard */; };
@@ -16,9 +18,23 @@
 		669062291E6FF6E400DCCA9D /* C2ASlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669062281E6FF6E400DCCA9D /* C2ASlider.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		43DF19B11E92F693008E9836 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6690620A1E6FF68A00DCCA9D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 669062111E6FF68A00DCCA9D;
+			remoteInfo = SlideToUnlock;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		438A73801E90DB03000905AE /* unlock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = unlock.mp3; path = SlideToUnlock/unlock.mp3; sourceTree = "<group>"; };
 		438A73831E912FCC000905AE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		43DF19A61E92F4F6008E9836 /* Backlog.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Backlog.rtf; sourceTree = "<group>"; };
+		43DF19AC1E92F693008E9836 /* SlideToUnlockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlideToUnlockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43DF19AE1E92F693008E9836 /* SlideToUnlockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideToUnlockTests.swift; sourceTree = "<group>"; };
+		43DF19B01E92F693008E9836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		669062121E6FF68A00DCCA9D /* SlideToUnlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideToUnlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		669062151E6FF68A00DCCA9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		669062171E6FF68A00DCCA9D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +46,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		43DF19A91E92F693008E9836 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6690620F1E6FF68A00DCCA9D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -56,9 +79,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		43DF19AD1E92F693008E9836 /* SlideToUnlockTests */ = {
+			isa = PBXGroup;
+			children = (
+				43DF19AE1E92F693008E9836 /* SlideToUnlockTests.swift */,
+				43DF19B01E92F693008E9836 /* Info.plist */,
+			);
+			path = SlideToUnlockTests;
+			sourceTree = "<group>";
+		};
 		669062091E6FF68A00DCCA9D = {
 			isa = PBXGroup;
 			children = (
+				43DF19A61E92F4F6008E9836 /* Backlog.rtf */,
+				43DF19AD1E92F693008E9836 /* SlideToUnlockTests */,
 				669062131E6FF68A00DCCA9D /* Products */,
 				438A737B1E90D925000905AE /* Resources */,
 				669062271E6FF6C000DCCA9D /* Slider */,
@@ -71,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				669062121E6FF68A00DCCA9D /* SlideToUnlock.app */,
+				43DF19AC1E92F693008E9836 /* SlideToUnlockTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +134,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		43DF19AB1E92F693008E9836 /* SlideToUnlockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43DF19B31E92F693008E9836 /* Build configuration list for PBXNativeTarget "SlideToUnlockTests" */;
+			buildPhases = (
+				43DF19A81E92F693008E9836 /* Sources */,
+				43DF19A91E92F693008E9836 /* Frameworks */,
+				43DF19AA1E92F693008E9836 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				43DF19B21E92F693008E9836 /* PBXTargetDependency */,
+			);
+			name = SlideToUnlockTests;
+			productName = SlideToUnlockTests;
+			productReference = 43DF19AC1E92F693008E9836 /* SlideToUnlockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		669062111E6FF68A00DCCA9D /* SlideToUnlock */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 669062241E6FF68A00DCCA9D /* Build configuration list for PBXNativeTarget "SlideToUnlock" */;
@@ -122,10 +175,16 @@
 		6690620A1E6FF68A00DCCA9D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "[code2 app];";
 				TargetAttributes = {
+					43DF19AB1E92F693008E9836 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = TWL9GTP42W;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 669062111E6FF68A00DCCA9D;
+					};
 					669062111E6FF68A00DCCA9D = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = TWL9GTP42W;
@@ -147,16 +206,25 @@
 			projectRoot = "";
 			targets = (
 				669062111E6FF68A00DCCA9D /* SlideToUnlock */,
+				43DF19AB1E92F693008E9836 /* SlideToUnlockTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		43DF19AA1E92F693008E9836 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		669062101E6FF68A00DCCA9D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				438A73811E90DB03000905AE /* unlock.mp3 in Resources */,
+				43DF19A71E92F4F6008E9836 /* Backlog.rtf in Resources */,
 				669062201E6FF68A00DCCA9D /* LaunchScreen.storyboard in Resources */,
 				6690621D1E6FF68A00DCCA9D /* Assets.xcassets in Resources */,
 				6690621B1E6FF68A00DCCA9D /* Main.storyboard in Resources */,
@@ -166,6 +234,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		43DF19A81E92F693008E9836 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43DF19AF1E92F693008E9836 /* SlideToUnlockTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6690620E1E6FF68A00DCCA9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -177,6 +253,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		43DF19B21E92F693008E9836 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 669062111E6FF68A00DCCA9D /* SlideToUnlock */;
+			targetProxy = 43DF19B11E92F693008E9836 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		669062191E6FF68A00DCCA9D /* Main.storyboard */ = {
@@ -198,6 +282,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		43DF19B41E92F693008E9836 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = TWL9GTP42W;
+				INFOPLIST_FILE = SlideToUnlockTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.code2app.SlideToUnlockTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlideToUnlock.app/SlideToUnlock";
+			};
+			name = Debug;
+		};
+		43DF19B51E92F693008E9836 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = TWL9GTP42W;
+				INFOPLIST_FILE = SlideToUnlockTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.code2app.SlideToUnlockTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlideToUnlock.app/SlideToUnlock";
+			};
+			name = Release;
+		};
 		669062221E6FF68A00DCCA9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -318,6 +434,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		43DF19B31E92F693008E9836 /* Build configuration list for PBXNativeTarget "SlideToUnlockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43DF19B41E92F693008E9836 /* Debug */,
+				43DF19B51E92F693008E9836 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		6690620D1E6FF68A00DCCA9D /* Build configuration list for PBXProject "SlideToUnlock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

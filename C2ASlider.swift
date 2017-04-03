@@ -13,11 +13,12 @@ import AVFoundation
 class C2ASlider: UIView {
 	
 	//MARK: - Properties
+    let sliderText                  = "Jetzt einzahlen"
     var startPoint: CGFloat         = 0.0
     var endPoint: CGFloat           = 0.0
 	var sliderEndPointX: CGFloat    = 0.0
     var offset: CGFloat             = 0.0
-    var buttonView: UIView!
+    var innerView: UIView!
     
     // Audio
     var player: AVAudioPlayer?
@@ -28,10 +29,10 @@ class C2ASlider: UIView {
 		
 		// add label to slider frame
 		let labelFrame = CGRect(x: 0 , y: 0, width: self.frame.size.width, height: self.frame.size.height)
-		self.addSubview(addLabel(frame: labelFrame, text: "Jetzt einzahlen", textColor: .white))
+		self.addSubview(addLabel(frame: labelFrame, text: sliderText, textColor: .white))
 
 		// add inner button to slider
-		addSliderButton()
+		setupSlider()
 	}
 	
     
@@ -40,29 +41,38 @@ class C2ASlider: UIView {
 	}
 	
     
-	//MARK: - create slider
-	private func addSliderButton(){
-        
-        // add actual slider button
-		let buttonHeight = self.frame.size.height
-		let buttonWidth = buttonHeight * 1.5
-        buttonView = UIView(frame: CGRect(x: 0 , y: 0, width: buttonWidth, height: buttonHeight))
-		buttonView.backgroundColor = UIColor.orange
-		buttonView.cornerRadius = self.cornerRadius
-		buttonView.addSubview(addLabel(frame: buttonView.frame, text: ">>>", textColor: .white))
-		
-		// add gesture recognizer
-		let slideRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.slide(sender:)))
-		slideRecognizer.minimumNumberOfTouches = 1
-		slideRecognizer.maximumNumberOfTouches = 1
-		buttonView.addGestureRecognizer(slideRecognizer)
-		
-		// put button on screen
-		self.addSubview(buttonView)
+	//MARK: - Slider
+	func setupSlider(){
+		self.addSubview(setupInnerView())
+        endPoint = self.frame.size.width - innerView.frame.size.width
 	}
 
     
-	private func addLabel(frame: CGRect, text: String, textColor: UIColor) -> UILabel{
+    func setupInnerView() -> UIView {
+        // the actual slider button
+        let buttonHeight = self.frame.size.height
+        let buttonWidth = buttonHeight * 1.5
+        innerView = UIView(frame: CGRect(x: 0 , y: 0, width: buttonWidth, height: buttonHeight))
+        innerView.backgroundColor = UIColor.orange
+        innerView.cornerRadius = self.cornerRadius
+        innerView.addSubview(addLabel(frame: innerView.frame, text: ">>>", textColor: .white))
+        
+        // add gesture recognizer
+        innerView.addGestureRecognizer(setupPanGesture())
+        
+        return innerView
+    }
+    
+   
+    func setupPanGesture() -> UIPanGestureRecognizer {
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.slide(sender:)))
+        panRecognizer.minimumNumberOfTouches = 1
+        panRecognizer.maximumNumberOfTouches = 1
+        return panRecognizer
+    }
+    
+    
+    func addLabel(frame: CGRect, text: String, textColor: UIColor) -> UILabel{
 		let label = UILabel(frame: frame)
 		label.textAlignment = .center
 		label.text = text
@@ -79,48 +89,47 @@ class C2ASlider: UIView {
 		let translatedPosition = translation.x
         
 		if sender.state == .began {
-            if endPoint == 0.0 {
-                endPoint = self.frame.size.width - buttonView.frame.size.width
-                offset = translatedPosition
-            }
+            offset = translatedPosition
 		}
-		
+
+        // allow sliding only to the right
+        if translatedPosition <= 0 {return}
         
+        print("PISV \(positionInSuperView); EP \(endPoint), TP: \(translatedPosition); State: \(sender.state)")
+
         // make sure slider is still within limits of its superview
-		if ((sender.state != .ended) &&
-            (sender.state != .failed) &&
-            (positionInSuperView < endPoint))
-        {
-			sender.view!.frame.origin.x = positionInSuperView + translatedPosition
-        } else {
-            playSound()
+		if ((sender.state == .changed) &&
+            (sender.state != .failed)) {
+
+            if ((positionInSuperView + translatedPosition) < endPoint) {
+                sender.view!.frame.origin.x = positionInSuperView + translatedPosition
+            }else if ((positionInSuperView + translatedPosition) > endPoint) {
+                /* Move slider to far right position if last position is already 3/4 of the total distance.
+                 * Otherwise move slider back to its starting position.
+                 */
+            }
         }
-		
-        
-		if sender.state == .ended{
-			// perform animation here if drag stop prior to hitting 
-		}
-	}
+    }
     
     
-    private func slideToFarRightPosition(animated: Bool) {
+    func slideToFarRightPosition(animated: Bool) {
         //TODO: implement me
     }
     
     
     func resetSlider(animated: Bool){
         startPoint         = 0.0
-        endPoint           = 0.0
         sliderEndPointX    = 0.0
         offset             = 0.0
-        buttonView.frame.origin.x = startPoint
+        innerView.frame.origin.x = startPoint
     }
     
     
+    // MARK: - Sound
     func playSound()  {
         
         guard let url = Bundle.main.url(forResource: "unlock", withExtension: "mp3") else {
-            print("url not found")
+            print("url for sound file not found")
             return
         }
         
