@@ -99,10 +99,19 @@ class C2ASlider: UIView {
         // make sure slider is still within limits of its superview
 		if ((sender.state == .changed) &&
             (sender.state != .failed)) {
+            
+            let newPosition = positionInSuperView + translatedPosition
 
-            if ((positionInSuperView + translatedPosition) < endPoint) {
-                sender.view!.frame.origin.x = positionInSuperView + translatedPosition
-            }else if ((positionInSuperView + translatedPosition) > endPoint) {
+            if (newPosition < endPoint) {
+                if newPosition > endPoint - 4.0{
+                    // end point is reached. Invoke action accordingly
+                    playSound()
+                    return
+                } else {
+                    updateSliderPosition(position: newPosition)
+                }
+                
+            }else if (newPosition > endPoint) {
                 /* Move slider to far right position if last position is already 3/4 of the total distance.
                  * Otherwise move slider back to its starting position.
                  */
@@ -110,6 +119,14 @@ class C2ASlider: UIView {
         }
     }
     
+    func updateSliderPosition(position: CGFloat) {
+        // dim label to be invisisble half the way
+        mainLabel?.alpha = calcualteAplhaFor(position: position)
+        
+        // redraw slider button
+        buttonView.frame.origin.x = position
+        
+    }
     
     func slideToFarRightPosition(animated: Bool) {
         //TODO: implement me
@@ -121,7 +138,7 @@ class C2ASlider: UIView {
         startPoint         = 0.0
         offset             = 0.0
         buttonView.frame.origin.x = startPoint
-        playSound()
+        // playSound()
     }
     
     
@@ -156,11 +173,13 @@ class C2ASlider: UIView {
      * Convert slider width to alpha value to fade in/out the main label
      * depending on the position of the slider. 0% distance = 1.0 alpha
      */
-    func calcualteAplhaFor() -> CGFloat {
+    func calcualteAplhaFor(position: CGFloat) -> CGFloat {
         // leave alpha at max if endpoint has not been set yet
         if endPoint == 0.0 {return CGFloat(1.0)}
         
-        return CGFloat(1.0)
+        // devide endPoint /2 so alpha is down to 0% when the slider reaches 
+        // half the distance
+        return 1.0 - (CGFloat(position / (endPoint / 2)))
     }
     
     // redraw label upon orientation change
