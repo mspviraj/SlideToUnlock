@@ -148,6 +148,14 @@ class C2ASlider: UIView {
         player!.play()
     }
     
+    
+    override func layoutSubviews() {
+       // redraw label upon orieentation change
+        if !self.subviews.isEmpty {
+            self.subviews[0].frame = self.bounds
+        }
+    }
+    
 }
 
 
