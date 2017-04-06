@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		438A73811E90DB03000905AE /* unlock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 438A73801E90DB03000905AE /* unlock.mp3 */; };
-		43DF19A71E92F4F6008E9836 /* Backlog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 43DF19A61E92F4F6008E9836 /* Backlog.rtf */; };
 		43DF19AF1E92F693008E9836 /* SlideToUnlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF19AE1E92F693008E9836 /* SlideToUnlockTests.swift */; };
 		669062161E6FF68A00DCCA9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669062151E6FF68A00DCCA9D /* AppDelegate.swift */; };
 		669062181E6FF68A00DCCA9D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669062171E6FF68A00DCCA9D /* ViewController.swift */; };
@@ -31,7 +30,6 @@
 /* Begin PBXFileReference section */
 		438A73801E90DB03000905AE /* unlock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = unlock.mp3; path = SlideToUnlock/unlock.mp3; sourceTree = "<group>"; };
 		438A73831E912FCC000905AE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		43DF19A61E92F4F6008E9836 /* Backlog.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Backlog.rtf; sourceTree = "<group>"; };
 		43DF19AC1E92F693008E9836 /* SlideToUnlockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlideToUnlockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43DF19AE1E92F693008E9836 /* SlideToUnlockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideToUnlockTests.swift; sourceTree = "<group>"; };
 		43DF19B01E92F693008E9836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 		669062091E6FF68A00DCCA9D = {
 			isa = PBXGroup;
 			children = (
-				43DF19A61E92F4F6008E9836 /* Backlog.rtf */,
 				43DF19AD1E92F693008E9836 /* SlideToUnlockTests */,
 				669062131E6FF68A00DCCA9D /* Products */,
 				438A737B1E90D925000905AE /* Resources */,
@@ -224,7 +221,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				438A73811E90DB03000905AE /* unlock.mp3 in Resources */,
-				43DF19A71E92F4F6008E9836 /* Backlog.rtf in Resources */,
 				669062201E6FF68A00DCCA9D /* LaunchScreen.storyboard in Resources */,
 				6690621D1E6FF68A00DCCA9D /* Assets.xcassets in Resources */,
 				6690621B1E6FF68A00DCCA9D /* Main.storyboard in Resources */,
@@ -441,6 +437,7 @@
 				43DF19B51E92F693008E9836 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6690620D1E6FF68A00DCCA9D /* Build configuration list for PBXProject "SlideToUnlock" */ = {
 			isa = XCConfigurationList;

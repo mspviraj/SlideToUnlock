@@ -33,6 +33,7 @@ class C2ASlider: UIView {
 
 		// add inner button to slider
 		setupSlider()
+        
 	}
 	
     
@@ -94,8 +95,6 @@ class C2ASlider: UIView {
 
         // allow sliding only to the right
         if translatedPosition <= 0 {return}
-        
-        print("PISV \(positionInSuperView); EP \(endPoint), TP: \(translatedPosition); State: \(sender.state)")
 
         // make sure slider is still within limits of its superview
 		if ((sender.state == .changed) &&
@@ -122,6 +121,7 @@ class C2ASlider: UIView {
         sliderEndPointX    = 0.0
         offset             = 0.0
         innerView.frame.origin.x = startPoint
+        playSound()
     }
     
     
@@ -129,23 +129,23 @@ class C2ASlider: UIView {
     func playSound()  {
         
         guard let url = Bundle.main.url(forResource: "unlock", withExtension: "mp3") else {
-            print("url for sound file not found")
+            print("sound file missing?!")
             return
         }
         
-        do {
-            /// this codes for making this app ready to takeover the device audio
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            /// change fileTypeHint according to the type of your audio file (you can omit this)
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3)
-            
-            // no need for prepareToPlay because prepareToPlay is happen automatically when calling play()
-            player!.play()
-        } catch let error as NSError {
-            print("error: \(error.localizedDescription)")
+        if player == nil {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: [.mixWithOthers])
+                try AVAudioSession.sharedInstance().setActive(true)
+                
+                /// change fileTypeHint according to the type of your audio file (you can omit this)
+                player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3)
+            } catch let error as NSError {
+                print("error: \(error.localizedDescription)")
+            }
         }
+        
+        player!.play()
     }
     
 }
