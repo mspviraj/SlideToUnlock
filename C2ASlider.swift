@@ -18,7 +18,8 @@ class C2ASlider: UIView {
     var endPoint: CGFloat           = 0.0
 	var sliderEndPointX: CGFloat    = 0.0
     var offset: CGFloat             = 0.0
-    var innerView: UIView!
+    var buttonView: UIView!
+    var mainLabel: UILabel?
     
     // Audio
     var player: AVAudioPlayer?
@@ -29,7 +30,8 @@ class C2ASlider: UIView {
 		
 		// add label to slider frame
 		let labelFrame = CGRect(x: 0 , y: 0, width: self.frame.size.width, height: self.frame.size.height)
-		self.addSubview(addLabel(frame: labelFrame, text: sliderText, textColor: .white))
+        mainLabel = addLabel(frame: labelFrame, text: sliderText, textColor: .white)
+		self.addSubview(mainLabel!)
 
 		// add inner button to slider
 		setupSlider()
@@ -45,7 +47,7 @@ class C2ASlider: UIView {
 	//MARK: - Slider
 	func setupSlider(){
 		self.addSubview(setupInnerView())
-        endPoint = self.frame.size.width - innerView.frame.size.width
+        endPoint = self.frame.size.width - buttonView.frame.size.width
 	}
 
     
@@ -53,15 +55,15 @@ class C2ASlider: UIView {
         // the actual slider button
         let buttonHeight = self.frame.size.height
         let buttonWidth = buttonHeight * 1.5
-        innerView = UIView(frame: CGRect(x: 0 , y: 0, width: buttonWidth, height: buttonHeight))
-        innerView.backgroundColor = UIColor.orange
-        innerView.cornerRadius = self.cornerRadius
-        innerView.addSubview(addLabel(frame: innerView.frame, text: ">>>", textColor: .white))
+        buttonView = UIView(frame: CGRect(x: 0 , y: 0, width: buttonWidth, height: buttonHeight))
+        buttonView.backgroundColor = UIColor.orange
+        buttonView.cornerRadius = self.cornerRadius
+        buttonView.addSubview(addLabel(frame: buttonView.frame, text: ">>>", textColor: .white))
         
         // add gesture recognizer
-        innerView.addGestureRecognizer(setupPanGesture())
+        buttonView.addGestureRecognizer(setupPanGesture())
         
-        return innerView
+        return buttonView
     }
     
    
@@ -120,7 +122,7 @@ class C2ASlider: UIView {
         startPoint         = 0.0
         sliderEndPointX    = 0.0
         offset             = 0.0
-        innerView.frame.origin.x = startPoint
+        buttonView.frame.origin.x = startPoint
         playSound()
     }
     
@@ -151,8 +153,8 @@ class C2ASlider: UIView {
     
     override func layoutSubviews() {
        // redraw label upon orieentation change
-        if !self.subviews.isEmpty {
-            self.subviews[0].frame = self.bounds
+        if let label = mainLabel {
+            label.frame = self.bounds
         }
     }
     
