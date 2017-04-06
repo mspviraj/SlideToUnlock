@@ -16,7 +16,6 @@ class C2ASlider: UIView {
     let sliderText                  = "Jetzt einzahlen"
     var startPoint: CGFloat         = 0.0
     var endPoint: CGFloat           = 0.0
-	var sliderEndPointX: CGFloat    = 0.0
     var offset: CGFloat             = 0.0
     var buttonView: UIView!
     var mainLabel: UILabel?
@@ -47,8 +46,7 @@ class C2ASlider: UIView {
 	//MARK: - Slider
 	func setupSlider(){
 		self.addSubview(setupInnerView())
-        endPoint = self.frame.size.width - buttonView.frame.size.width
-	}
+    }
 
     
     func setupInnerView() -> UIView {
@@ -119,8 +117,8 @@ class C2ASlider: UIView {
     
     
     func resetSlider(animated: Bool){
+        mainLabel?.alpha   = 1.0
         startPoint         = 0.0
-        sliderEndPointX    = 0.0
         offset             = 0.0
         buttonView.frame.origin.x = startPoint
         playSound()
@@ -151,8 +149,23 @@ class C2ASlider: UIView {
     }
     
     
+    
+    // MARK: - Main Label
+    
+    /*
+     * Convert slider width to alpha value to fade in/out the main label
+     * depending on the position of the slider. 0% distance = 1.0 alpha
+     */
+    func calcualteAplhaFor() -> CGFloat {
+        // leave alpha at max if endpoint has not been set yet
+        if endPoint == 0.0 {return CGFloat(1.0)}
+        
+        return CGFloat(1.0)
+    }
+    
+    // redraw label upon orientation change
     override func layoutSubviews() {
-       // redraw label upon orieentation change
+        endPoint = self.frame.size.width - buttonView.frame.size.width
         if let label = mainLabel {
             label.frame = self.bounds
         }
