@@ -26,6 +26,7 @@ class C2ASlider: UIView {
     var startPoint: CGFloat         = 0.0
     var endPoint: CGFloat           = 0.0
     var offset: CGFloat             = 0.0
+    var swipeIsComplete             = false
     var buttonView: UIView!
     var mainLabel: UILabel?
     var player: AVAudioPlayer?
@@ -41,7 +42,6 @@ class C2ASlider: UIView {
 
 		// add inner button to slider
 		setupSlider()
-        
 	}
 	
     
@@ -110,10 +110,11 @@ class C2ASlider: UIView {
             let newPosition = positionInSuperView + translatedPosition
 
             if (newPosition < endPoint) {
+                if swipeIsComplete == true {return}
                 if newPosition > endPoint - 4.0{
                     // end point is reached. Invoke action accordingly
-                    delegate?.didCompleteSwipe(sender: self)
-                    playSound()
+                    print("swipe complete")
+                    swipeIsComplete = true
                     return
                 } else {
                     updateSliderPosition(position: newPosition)
@@ -124,7 +125,8 @@ class C2ASlider: UIView {
                  * Otherwise move slider back to its starting position.
                  */
             }
-        }            
+        }
+        
     }
     
     func updateSliderPosition(position: CGFloat) {
@@ -140,14 +142,18 @@ class C2ASlider: UIView {
         //TODO: implement me
     }
     
-    
     func resetSlider(animated: Bool){
         mainLabel?.alpha   = 1.0
         startPoint         = 0.0
         offset             = 0.0
+        swipeIsComplete    = false
         buttonView.frame.origin.x = startPoint
     }
     
+    func swipeComplete(){
+        delegate?.didCompleteSwipe(sender: self)
+        playSound()
+    }
     
     // MARK: - Sound
     func playSound()  {
