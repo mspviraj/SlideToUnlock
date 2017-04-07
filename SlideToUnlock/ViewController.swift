@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, C2ASliderDelegate {
 
     // MARK: - Properties
     @IBOutlet weak var slider: C2ASlider!
@@ -17,13 +17,7 @@ class ViewController: UIViewController {
     // MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
-	}
-
-    
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+		slider.delegate = self
 	}
 
     
@@ -32,5 +26,11 @@ class ViewController: UIViewController {
         slider.resetSlider(animated: false)
     }
 
+    
+    // MARK: - Slider Delegate
+    func didCompleteSwipe(sender: C2ASlider) {
+        print("swipe complete")
+    }
+    
 }
 

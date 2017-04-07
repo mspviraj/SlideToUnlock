@@ -10,17 +10,24 @@
 import UIKit
 import AVFoundation
 
+
+@objc protocol C2ASliderDelegate{
+    func didCompleteSwipe(sender: C2ASlider)
+    @objc optional func didInclompleteSwipe(sender: C2ASlider)
+}
+
+
 class C2ASlider: UIView {
 	
 	//MARK: - Properties
+    var delegate: C2ASliderDelegate?
+    
     let sliderText                  = "Jetzt einzahlen"
     var startPoint: CGFloat         = 0.0
     var endPoint: CGFloat           = 0.0
     var offset: CGFloat             = 0.0
     var buttonView: UIView!
     var mainLabel: UILabel?
-    
-    // Audio
     var player: AVAudioPlayer?
     
     
@@ -105,6 +112,7 @@ class C2ASlider: UIView {
             if (newPosition < endPoint) {
                 if newPosition > endPoint - 4.0{
                     // end point is reached. Invoke action accordingly
+                    delegate?.didCompleteSwipe(sender: self)
                     playSound()
                     return
                 } else {
@@ -116,7 +124,7 @@ class C2ASlider: UIView {
                  * Otherwise move slider back to its starting position.
                  */
             }
-        }
+        }            
     }
     
     func updateSliderPosition(position: CGFloat) {
@@ -138,7 +146,6 @@ class C2ASlider: UIView {
         startPoint         = 0.0
         offset             = 0.0
         buttonView.frame.origin.x = startPoint
-        // playSound()
     }
     
     
