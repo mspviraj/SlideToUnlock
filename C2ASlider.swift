@@ -13,7 +13,7 @@ import AVFoundation
 
 @objc protocol C2ASliderDelegate{
     func didCompleteSwipe(sender: C2ASlider)
-    @objc optional func didInclompleteSwipe(sender: C2ASlider)
+    @objc optional func didEndIncompleteSwipe(sender: C2ASlider)
 }
 
 
@@ -90,11 +90,15 @@ class C2ASlider: UIView {
 	
     
 	func slide(sender: UIPanGestureRecognizer){
-        
         let positionInSuperView = sender.view!.frame.origin.x
         let translation = sender.translation(in: sender.view?.superview)
         sender.setTranslation(CGPoint.zero, in: sender.view?.superview)
 		let translatedPosition = translation.x
+        
+        if sender.state == .ended {
+            if swipeIsComplete == true {return}
+            delegate?.didEndIncompleteSwipe?(sender: self)
+        }
         
 		if sender.state == .began {
             offset = translatedPosition

@@ -32,5 +32,10 @@ class ViewController: UIViewController, C2ASliderDelegate {
         print("swipe complete")
     }
     
+    
+    func didEndIncompleteSwipe(sender: C2ASlider) {
+        print("finished incomplete swipe")
+    }
+    
 }
 
