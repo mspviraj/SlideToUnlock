@@ -12,8 +12,8 @@ import AVFoundation
 
 
 @objc protocol C2ASliderDelegate{
-    func didCompleteSwipe(sender: C2ASlider)
-    @objc optional func didEndIncompleteSwipe(sender: C2ASlider)
+    func didCompleteSlide(sender: C2ASlider)
+    @objc optional func didEndIncompleteSlide(sender: C2ASlider)
 }
 
 
@@ -21,15 +21,17 @@ class C2ASlider: UIView {
 	
 	//MARK: - Properties
     var delegate: C2ASliderDelegate?
+    var sliderText                      = "Jetzt einzahlen"
+    var soundIsOn                       = false
     
-    let sliderText                  = "Jetzt einzahlen"
-    var startPoint: CGFloat         = 0.0
-    var endPoint: CGFloat           = 0.0
-    var offset: CGFloat             = 0.0
-    var swipeIsComplete             = false
-    var buttonView: UIView!
-    var mainLabel: UILabel?
-    var player: AVAudioPlayer?
+    // Private Properties
+    private var startPoint: CGFloat     = 0.0
+    private var endPoint: CGFloat       = 0.0
+    private var offset: CGFloat         = 0.0
+    private var slideIsComplete         = false
+    private var buttonView: UIView!
+    private var mainLabel: UILabel?
+    private var player: AVAudioPlayer?
     
     
 	//MARK: - Liefcycle
@@ -94,44 +96,38 @@ class C2ASlider: UIView {
         let translation = sender.translation(in: sender.view?.superview)
         sender.setTranslation(CGPoint.zero, in: sender.view?.superview)
 		let translatedPosition = translation.x
+        let newPosition = positionInSuperView + translatedPosition
         
         if sender.state == .ended {
-            if swipeIsComplete == true {return}
-            delegate?.didEndIncompleteSwipe?(sender: self)
+            if (newPosition < (endPoint - 1.0)) && (slideIsComplete == false) {
+            delegate?.didEndIncompleteSlide?(sender: self)
+            }
         }
         
 		if sender.state == .began {
             offset = translatedPosition
 		}
 
-        // allow sliding only to the right
+        // allow sliding only in right direction
         if translatedPosition <= 0 {return}
 
         // make sure slider is still within limits of its superview
 		if ((sender.state == .changed) &&
             (sender.state != .failed)) {
             
-            let newPosition = positionInSuperView + translatedPosition
-
             if (newPosition < endPoint) {
-                if swipeIsComplete == true {return}
-                if newPosition > endPoint - 4.0{
+                if slideIsComplete == true {return}
+                if (newPosition > (endPoint - 1.0)){
                     // end point is reached. Invoke action accordingly
-                    print("swipe complete")
-                    swipeIsComplete = true
-                    return
+                    slideIsComplete = true
+                    slideComplete()
                 } else {
                     updateSliderPosition(position: newPosition)
                 }
-                
-            }else if (newPosition > endPoint) {
-                /* Move slider to far right position if last position is already 3/4 of the total distance.
-                 * Otherwise move slider back to its starting position.
-                 */
             }
         }
-        
     }
+    
     
     func updateSliderPosition(position: CGFloat) {
         // dim label to be invisisble half the way
@@ -139,28 +135,36 @@ class C2ASlider: UIView {
         
         // redraw slider button
         buttonView.frame.origin.x = position
-        
     }
     
-    func slideToFarRightPosition(animated: Bool) {
+    
+    func slideToPosition(position: CGFloat, animated: Bool) {
         //TODO: implement me
+        print("slide to far right")
     }
+    
     
     func resetSlider(animated: Bool){
-        mainLabel?.alpha   = 1.0
-        startPoint         = 0.0
-        offset             = 0.0
-        swipeIsComplete    = false
-        buttonView.frame.origin.x = startPoint
+        mainLabel?.alpha            = 1.0
+        startPoint                  = 0.0
+        offset                      = 0.0
+        slideIsComplete             = false
+        buttonView.frame.origin.x   = startPoint
     }
     
-    func swipeComplete(){
-        delegate?.didCompleteSwipe(sender: self)
+    
+    func slideComplete(){
+        // move slider to endPoint
+        if buttonView.frame.origin.x < endPoint {slideToPosition(position: endPoint, animated: false)}
         playSound()
+        delegate?.didCompleteSlide(sender: self)
     }
+    
     
     // MARK: - Sound
     func playSound()  {
+        
+        if soundIsOn == false {return}
         
         guard let url = Bundle.main.url(forResource: "unlock", withExtension: "mp3") else {
             print("sound file missing?!")
@@ -181,7 +185,6 @@ class C2ASlider: UIView {
         
         player!.play()
     }
-    
     
     
     // MARK: - Main Label

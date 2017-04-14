@@ -28,13 +28,13 @@ class ViewController: UIViewController, C2ASliderDelegate {
 
     
     // MARK: - Slider Delegate
-    func didCompleteSwipe(sender: C2ASlider) {
-        print("swipe complete")
+    func didCompleteSlide(sender: C2ASlider) {
+        print("VC: slide complete")
     }
     
     
-    func didEndIncompleteSwipe(sender: C2ASlider) {
-        print("finished incomplete swipe")
+    func didEndIncompleteSlide(sender: C2ASlider) {
+        print("VC: finished incomplete slide")
     }
     
 }
