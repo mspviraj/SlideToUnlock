@@ -8,18 +8,34 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, C2ASliderDelegate {
 
+    // MARK: - Properties
+    @IBOutlet weak var slider: C2ASlider!
+
+    
+    // MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+		slider.delegate = self
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
+    
+    // MARK: - other
+    @IBAction func resetTapped(_ sender: UIButton) {
+        slider.resetSlider(animated: false)
+    }
 
-
+    
+    // MARK: - Slider Delegate
+    func didCompleteSlide(sender: C2ASlider) {
+        print("VC: slide complete")
+    }
+    
+    
+    func didEndIncompleteSlide(sender: C2ASlider) {
+        print("VC: finished incomplete slide")
+    }
+    
 }
 
