@@ -34,7 +34,7 @@ class ViewController: UIViewController, C2ASliderDelegate {
     
     
     func didEndIncompleteSlide(sender: C2ASlider) {
-        print("VC: finished incomplete slide")
+        print("VC: did incomplete slide")
     }
     
 }

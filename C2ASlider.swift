@@ -35,7 +35,6 @@ class C2ASlider: UIView {
     
 	//MARK: - Liefcycle
 	override func awakeFromNib() {
-		
 		// add label to slider frame
 		let labelFrame = CGRect(x: 0 , y: 0, width: self.frame.size.width, height: self.frame.size.height)
         mainLabel = addLabel(frame: labelFrame, text: sliderText, textColor: .white)
