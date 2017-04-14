@@ -18,20 +18,19 @@ import AVFoundation
 
 
 class C2ASlider: UIView {
+    typealias ComplitionHandler = ()->()
 	
 	//MARK: - Properties
     var delegate: C2ASliderDelegate?
-    var sliderText                      = "Jetzt einzahlen"
-    var soundIsOn                       = false
-    
-    // Private Properties
-    private var startPoint: CGFloat     = 0.0
-    private var endPoint: CGFloat       = 0.0
-    private var offset: CGFloat         = 0.0
-    private var slideIsComplete         = false
-    private var buttonView: UIView!
-    private var mainLabel: UILabel?
-    private var player: AVAudioPlayer?
+    var sliderText              = "slide to ..."
+    var soundIsOn               = true
+    var startPoint: CGFloat     = 0.0
+    var endPoint: CGFloat       = 0.0
+    var offset: CGFloat         = 0.0
+    var slideIsComplete         = false
+    var buttonView: UIView!
+    var mainLabel: UILabel?
+    var player: AVAudioPlayer?
     
     
 	//MARK: - Liefcycle
@@ -100,7 +99,8 @@ class C2ASlider: UIView {
         
         if sender.state == .ended {
             if (newPosition < (endPoint - 1.0)) && (slideIsComplete == false) {
-            delegate?.didEndIncompleteSlide?(sender: self)
+                resetSlider(animated: true)
+                delegate?.didEndIncompleteSlide?(sender: self)
             }
         }
         
@@ -138,24 +138,33 @@ class C2ASlider: UIView {
     }
     
     
-    func slideToPosition(position: CGFloat, animated: Bool) {
-        //TODO: implement me
-        print("slide to far right")
+    func slideToPosition(position: CGFloat, animated: Bool, completionHandler: ComplitionHandler?) {
+        var duration = 0.0
+        if animated == true {duration = 0.2}
+        
+        UIView.animate(withDuration: duration,
+                         animations: {self.updateSliderPosition(position: position)},
+                         completion: { (complete: Bool) in
+                                        if let handler = completionHandler{
+                                            handler()
+                                        }
+        })
     }
     
-    
+
     func resetSlider(animated: Bool){
-        mainLabel?.alpha            = 1.0
-        startPoint                  = 0.0
-        offset                      = 0.0
-        slideIsComplete             = false
-        buttonView.frame.origin.x   = startPoint
+        slideToPosition(position: startPoint, animated: true, completionHandler:{ _ in
+            self.startPoint         = 0.0
+            self.offset             = 0.0
+            self.slideIsComplete    = false
+            self.mainLabel?.alpha   = 1.0
+        })
     }
     
     
     func slideComplete(){
         // move slider to endPoint
-        if buttonView.frame.origin.x < endPoint {slideToPosition(position: endPoint, animated: false)}
+        if buttonView.frame.origin.x < endPoint {slideToPosition(position: endPoint, animated: false, completionHandler: nil)}
         playSound()
         delegate?.didCompleteSlide(sender: self)
     }

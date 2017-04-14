@@ -12,7 +12,7 @@ import XCTest
 
 class C2ASliderTest: XCTestCase {
     
-    func testcalcualteAplha() {
+    func testCalcualteAplha() {
         let cd = NSKeyedUnarchiver(forReadingWith: NSMutableData() as Data)
         let slider = C2ASlider(coder: cd)
         slider.endPoint = 250.0
