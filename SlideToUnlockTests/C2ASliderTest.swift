@@ -17,7 +17,7 @@ class C2ASliderTest: XCTestCase {
     override func setUp() {
         let cd = NSKeyedUnarchiver(forReadingWith: NSMutableData() as Data)
         slider = C2ASlider(coder: cd)
-        XCTAssertTrue(slider != nil)
+        XCTAssertTrue(slider != nil, "Slider is nil")
     }
     
     
@@ -44,7 +44,10 @@ class C2ASliderTest: XCTestCase {
     
     
     func testSlide() {
-        //TODO: how to test a UI element like a gesture?
+        slider?.setupSlider()
+        let panRecognizer = UIPanGestureRecognizer(target: slider, action: #selector(slider?.slide(sender:)))
+        slider?.buttonView.addGestureRecognizer(panRecognizer)
+        XCTAssertTrue(((slider?.slide(sender: panRecognizer)) != nil))
     }
     
     
@@ -81,13 +84,19 @@ class C2ASliderTest: XCTestCase {
     
     
     func testDidCompleteSlide() {
-        // ...
+        slider?.setupSlider()
+        XCTAssertNil(slider?.player)
+        slider?.didCompleteSlide()
+        XCTAssertNotNil(slider?.player)
     }
     
     
     func testPlaySound() {
-        // ...
+        XCTAssertNil(slider?.player)
+        slider?.playSound()
+        XCTAssertNotNil(slider?.player)
     }
+
     
     
     func testCalcualteAplha() {

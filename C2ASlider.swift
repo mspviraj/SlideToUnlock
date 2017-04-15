@@ -50,6 +50,7 @@ class C2ASlider: UIView {
 	}
 	
     
+
 	//MARK: - Slider
 	func setupSlider(){
 		self.addSubview(setupInnerView())
