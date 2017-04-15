@@ -119,16 +119,16 @@ class C2ASlider: UIView {
                 if (newPosition > (endPoint - 1.0)){
                     // end point is reached. Invoke action accordingly
                     slideIsComplete = true
-                    slideComplete()
+                    didCompleteSlide()
                 } else {
-                    updateSliderPosition(position: newPosition)
+                    update(position: newPosition)
                 }
             }
         }
     }
     
     
-    func updateSliderPosition(position: CGFloat) {
+    func update(position: CGFloat) {
         // dim label to be invisisble half the way
         mainLabel?.alpha = calcualteAplhaFor(position: position)
         
@@ -137,12 +137,12 @@ class C2ASlider: UIView {
     }
     
     
-    func slideToPosition(position: CGFloat, animated: Bool, completionHandler: ComplitionHandler?) {
+    func slideTo(position: CGFloat, animated: Bool, completionHandler: ComplitionHandler?) {
         var duration = 0.0
         if animated == true {duration = 0.2}
         
         UIView.animate(withDuration: duration,
-                         animations: {self.updateSliderPosition(position: position)},
+                         animations: {self.update(position: position)},
                          completion: { (complete: Bool) in
                                         if let handler = completionHandler{
                                             handler()
@@ -152,7 +152,7 @@ class C2ASlider: UIView {
     
 
     func resetSlider(animated: Bool){
-        slideToPosition(position: startPoint, animated: true, completionHandler:{ _ in
+        slideTo(position: startPoint, animated: true, completionHandler:{ _ in
             self.startPoint         = 0.0
             self.offset             = 0.0
             self.slideIsComplete    = false
@@ -161,9 +161,9 @@ class C2ASlider: UIView {
     }
     
     
-    func slideComplete(){
+    func didCompleteSlide(){
         // move slider to endPoint
-        if buttonView.frame.origin.x < endPoint {slideToPosition(position: endPoint, animated: false, completionHandler: nil)}
+        if buttonView.frame.origin.x < endPoint {slideTo(position: endPoint, animated: false, completionHandler: nil)}
         playSound()
         delegate?.didCompleteSlide(sender: self)
     }
