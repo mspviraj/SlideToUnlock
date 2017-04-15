@@ -21,8 +21,10 @@ class C2ASlider: UIView {
     typealias ComplitionHandler = ()->()
 	
 	//MARK: - Properties
-    var delegate: C2ASliderDelegate?
     var sliderText              = "slide to ..."
+    
+    // do not change
+    var delegate: C2ASliderDelegate?
     var soundIsOn               = true
     var startPoint: CGFloat     = 0.0
     var endPoint: CGFloat       = 0.0
@@ -49,7 +51,6 @@ class C2ASlider: UIView {
 		super.init(coder: aDecoder)!
 	}
 	
-    
 
 	//MARK: - Slider
 	func setupSlider(){

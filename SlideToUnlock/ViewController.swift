@@ -21,7 +21,7 @@ class ViewController: UIViewController, C2ASliderDelegate {
 	}
 
     
-    // MARK: - other
+    // MARK: - Actions
     @IBAction func resetTapped(_ sender: UIButton) {
         slider.resetSlider(animated: false)
     }
@@ -29,12 +29,12 @@ class ViewController: UIViewController, C2ASliderDelegate {
     
     // MARK: - Slider Delegate
     func didCompleteSlide(sender: C2ASlider) {
-        print("VC: slide complete")
+        print("Delegate: slide complete")
     }
     
     
     func didEndIncompleteSlide(sender: C2ASlider) {
-        print("VC: did incomplete slide")
+        print("Delegate: did incomplete slide")
     }
     
 }
