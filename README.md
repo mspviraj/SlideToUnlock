@@ -8,3 +8,5 @@ Future enhancements:
 - make properties available as @IBInspectables
 
 License: MIT
+
+![screenshot](https://github.com/doertydoerk/SlideToUnlock/blob/master/Screenshot.png)
