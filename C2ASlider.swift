@@ -37,15 +37,17 @@ class C2ASlider: UIView {
     
 	//MARK: - Liefcycle
 	override func awakeFromNib() {
-		// add label to slider frame
-		let labelFrame = CGRect(x: 0 , y: 0, width: self.frame.size.width, height: self.frame.size.height)
-        mainLabel = addLabel(frame: labelFrame, text: sliderText, textColor: .white)
-		self.addSubview(mainLabel!)
 
 		// add inner button to slider
 		setupSlider()
 	}
 	
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupSlider()
+    }
+    
     
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
@@ -54,6 +56,12 @@ class C2ASlider: UIView {
 
 	//MARK: - Slider
 	func setupSlider(){
+        // add label to slider frame
+        let labelFrame = CGRect(x: 0 , y: 0, width: self.frame.size.width, height: self.frame.size.height)
+        mainLabel = addLabel(frame: labelFrame, text: sliderText, textColor: .white)
+        self.addSubview(mainLabel!)
+
+        // add slider buttton
 		self.addSubview(setupInnerView())
     }
 
