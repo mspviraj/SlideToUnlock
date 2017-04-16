@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, C2ASliderDelegate {
+class ViewController: UIViewController {
 
     // MARK: - Properties
     @IBOutlet weak var slider: C2ASlider!
@@ -26,8 +26,11 @@ class ViewController: UIViewController, C2ASliderDelegate {
         slider.resetSlider(animated: false)
     }
 
+}
+
+
+extension ViewController: C2ASliderDelegate {
     
-    // MARK: - Slider Delegate
     func didCompleteSlide(sender: C2ASlider) {
         print("Delegate: slide complete")
     }
@@ -38,4 +41,3 @@ class ViewController: UIViewController, C2ASliderDelegate {
     }
     
 }
-

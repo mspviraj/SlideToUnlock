@@ -22,22 +22,21 @@ class C2ASlider: UIView {
 	
 	//MARK: - Properties
     var sliderText              = "slide to ..."
-    
-    // do not change
-    var delegate: C2ASliderDelegate?
     var soundIsOn               = true
-    var startPoint: CGFloat     = 0.0
-    var endPoint: CGFloat       = 0.0
-    var offset: CGFloat         = 0.0
-    var slideIsComplete         = false
-    var buttonView: UIView!
-    var mainLabel: UILabel?
-    var player: AVAudioPlayer?
+    var delegate: C2ASliderDelegate?
+    
+    // not declared 'private' due to unit testing
+    internal var startPoint: CGFloat     = 0.0
+    internal var endPoint: CGFloat       = 0.0
+    internal var offset: CGFloat         = 0.0
+    internal var slideIsComplete         = false
+    internal var buttonView: UIView!
+    internal var mainLabel: UILabel?
+    internal var player: AVAudioPlayer?
     
     
 	//MARK: - Liefcycle
 	override func awakeFromNib() {
-
 		// add inner button to slider
 		setupSlider()
 	}
@@ -114,6 +113,7 @@ class C2ASlider: UIView {
         }
         
 		if sender.state == .began {
+            // 'offset' equals where the button view was actually hit on the X axis
             offset = translatedPosition
 		}
 
